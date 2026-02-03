@@ -54,7 +54,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 p-4 md:p-6">
+      <div className="bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
         {/* Genre Tabs */}
         <div className="flex flex-wrap gap-2 mb-4">
           {genres.map((genre) => (
@@ -64,10 +64,10 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               size="sm"
               onClick={() => handleGenreChange(genre.value)}
               className={cn(
-                "rounded-full",
+                "rounded-full transition-all duration-200",
                 selectedGenre === genre.value
-                  ? ""
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "shadow-md shadow-primary/25"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               )}
             >
               {genre.label}
@@ -77,19 +77,19 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
 
         {/* Search and Sort */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <div className="relative flex-1 group">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input
               placeholder="태그로 검색... (예: #힐링, #반전)"
               value={search}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="pl-10 bg-background/50"
+              className="pl-10 bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
             />
           </div>
           <div className="flex items-center gap-2">
             <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
             <Select value={sort} onValueChange={handleSortChange}>
-              <SelectTrigger className="w-[140px] bg-background/50">
+              <SelectTrigger className="w-[140px] bg-background/50 border-border/50 hover:border-primary/30 transition-colors">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
