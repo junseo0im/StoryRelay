@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { ParagraphCard } from "@/components/paragraph-card"
 import { StoryActionBar } from "@/components/story-action-bar"
 import { WritingEditor } from "@/components/writing-editor"
+import { WritingGuide } from "@/components/writing-guide"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { sampleStoryDetail } from "@/lib/sample-data"
@@ -63,7 +64,19 @@ export default async function StoryDetailPage({ params }: { params: Promise<{ id
           <h2 className="text-lg font-semibold text-foreground mb-4">
             다음 턴 작성하기
           </h2>
-          <WritingEditor />
+          
+          {/* Guide and Editor Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Writing Guide */}
+            <div className="lg:col-span-1">
+              <WritingGuide genre={story.genre} />
+            </div>
+
+            {/* Editor */}
+            <div className="lg:col-span-2">
+              <WritingEditor />
+            </div>
+          </div>
         </div>
       </div>
     </div>

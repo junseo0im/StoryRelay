@@ -1,9 +1,10 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { StoryCard } from "@/components/story-card"
 import { sampleStories } from "@/lib/sample-data"
-import { FileX } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { FileX, ChevronLeft, ChevronRight } from "lucide-react"
 
 interface StoryListProps {
   filters: {
@@ -13,7 +14,10 @@ interface StoryListProps {
   }
 }
 
+const ITEMS_PER_PAGE = 9
+
 export function StoryList({ filters }: StoryListProps) {
+  const [currentPage, setCurrentPage] = useState(1)
   const filteredAndSortedStories = useMemo(() => {
     let filtered = [...sampleStories]
 
@@ -71,6 +75,22 @@ export function StoryList({ filters }: StoryListProps) {
     return filtered
   }, [filters])
 
+  // Reset to page 1 when filters change
+  useMemo(() => {
+    setCurrentPage(1)
+  }, [filters])
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredAndSortedStories.length / ITEMS_PER_PAGE)
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const currentStories = filteredAndSortedStories.slice(startIndex, endIndex)
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
       <div className="flex items-center justify-between mb-6">
@@ -79,11 +99,78 @@ export function StoryList({ filters }: StoryListProps) {
       </div>
       
       {filteredAndSortedStories.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredAndSortedStories.map((story) => (
-            <StoryCard key={story.id} {...story} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentStories.map((story) => (
+              <StoryCard key={story.id} {...story} />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-12">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="bg-card/60 backdrop-blur-sm disabled:opacity-50 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                <span className="sr-only">이전 페이지</span>
+              </Button>
+
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // Show first page, last page, current page and adjacent pages
+                  const showPage = 
+                    page === 1 || 
+                    page === totalPages || 
+                    (page >= currentPage - 1 && page <= currentPage + 1)
+                  
+                  if (!showPage) {
+                    // Show ellipsis
+                    if (page === currentPage - 2 || page === currentPage + 2) {
+                      return (
+                        <div key={page} className="px-2 py-1 text-muted-foreground">
+                          ...
+                        </div>
+                      )
+                    }
+                    return null
+                  }
+
+                  return (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handlePageChange(page)}
+                      className={
+                        currentPage === page
+                          ? "min-w-[40px] shadow-md shadow-primary/25"
+                          : "min-w-[40px] bg-card/60 backdrop-blur-sm hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all"
+                      }
+                    >
+                      {page}
+                    </Button>
+                  )
+                })}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="bg-card/60 backdrop-blur-sm disabled:opacity-50 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all"
+              >
+                <ChevronRight className="h-4 w-4" />
+                <span className="sr-only">다음 페이지</span>
+              </Button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 px-4">
           <div className="p-6 rounded-full bg-muted/50 mb-4">

@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/hero-section"
 import { ChallengeBanner } from "@/components/challenge-banner"
 import { FilterBar } from "@/components/filter-bar"
 import { StoryList } from "@/components/story-list"
+import { PopularAuthors } from "@/components/popular-authors"
 
 export default function HomePage() {
   const [filters, setFilters] = useState({
@@ -17,6 +18,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <HeroSection />
       <ChallengeBanner />
+      <PopularAuthors />
       <FilterBar onFilterChange={setFilters} />
       <StoryList filters={filters} />
     </div>
