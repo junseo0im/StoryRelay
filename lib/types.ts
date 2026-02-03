@@ -64,6 +64,19 @@ export interface Challenge {
   status: "active" | "upcoming" | "ended"
 }
 
+export interface CompletedStory {
+  id: string
+  title: string
+  genre: string
+  tags: string[]
+  totalTurns: number
+  totalAuthors: number
+  totalLikes: number
+  completedDate: string
+  preview: string
+  coverImage?: string
+}
+
 export type Genre = "전체" | "자유" | "판타지" | "SF" | "로맨스" | "공포"
 
 export const GENRES: Genre[] = ["전체", "자유", "판타지", "SF", "로맨스", "공포"]

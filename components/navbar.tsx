@@ -13,12 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from "@/components/auth-provider"
 import { LoginModal } from "@/components/login-modal"
-import { BookOpen, Home, Trophy, Award, User, LogOut, Menu, X } from "lucide-react"
+import { BookOpen, Home, Trophy, Award, User, LogOut, Menu, X, BookCheck } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
   { href: "/", label: "홈", icon: Home },
+  { href: "/completed", label: "완성 작품", icon: BookCheck },
   { href: "/challenges", label: "챌린지", icon: Trophy },
   { href: "/ranking", label: "랭킹", icon: Award, badge: "Phase 2" },
 ]

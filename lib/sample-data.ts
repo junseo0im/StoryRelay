@@ -1,4 +1,4 @@
-import type { Story, StoryDetail, ProfileStory, Challenge, PopularAuthor } from "./types"
+import type { Story, StoryDetail, ProfileStory, Challenge, PopularAuthor, CompletedStory } from "./types"
 
 export const sampleStories: Story[] = [
   {
@@ -262,5 +262,116 @@ export const popularAuthors: PopularAuthor[] = [
     totalLikes: 789,
     totalTurns: 29,
     badge: "인기 작가"
+  },
+]
+
+export const completedStories: CompletedStory[] = [
+  {
+    id: "completed-1",
+    title: "시간을 달리는 소녀의 마지막 여행",
+    genre: "판타지",
+    tags: ["시간여행", "모험", "감동"],
+    totalTurns: 42,
+    totalAuthors: 8,
+    totalLikes: 1567,
+    completedDate: "2025-02-15",
+    preview: "모든 시간을 여행했던 소녀가 마침내 돌아갈 곳을 찾았다. 그곳은 바로...",
+    coverImage: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-2",
+    title: "최후의 로봇",
+    genre: "SF",
+    tags: ["포스트아포칼립스", "AI", "희망"],
+    totalTurns: 36,
+    totalAuthors: 6,
+    totalLikes: 2103,
+    completedDate: "2025-02-10",
+    preview: "인류가 사라진 지 100년. 홀로 남은 로봇이 발견한 것은 마지막 인간의 메시지였다.",
+    coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-3",
+    title: "우리가 함께한 그 여름",
+    genre: "로맨스",
+    tags: ["청춘", "첫사랑", "성장"],
+    totalTurns: 28,
+    totalAuthors: 5,
+    totalLikes: 1834,
+    completedDate: "2025-02-05",
+    preview: "그 여름, 우리는 영원할 줄 알았다. 하지만 모든 계절은 언젠가 끝나는 법이었다.",
+    coverImage: "https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-4",
+    title: "저주받은 도서관",
+    genre: "공포",
+    tags: ["미스터리", "저주", "책"],
+    totalTurns: 31,
+    totalAuthors: 7,
+    totalLikes: 1245,
+    completedDate: "2025-01-28",
+    preview: "이 도서관에서는 책을 빌려가면 반드시 무언가를 대가로 지불해야 한다...",
+    coverImage: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-5",
+    title: "작은 빵집의 기적",
+    genre: "자유",
+    tags: ["일상", "힐링", "음식"],
+    totalTurns: 25,
+    totalAuthors: 9,
+    totalLikes: 1678,
+    completedDate: "2025-01-20",
+    preview: "골목 끝 작은 빵집. 이곳의 빵을 먹으면 잊었던 소중한 기억이 되살아난다고 한다.",
+    coverImage: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-6",
+    title: "은하계 끝의 등대지기",
+    genre: "SF",
+    tags: ["우주", "고독", "희망"],
+    totalTurns: 38,
+    totalAuthors: 6,
+    totalLikes: 1923,
+    completedDate: "2025-01-15",
+    preview: "우주의 끝에서 홀로 등대를 지키던 그가 마지막으로 받은 신호는...",
+    coverImage: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-7",
+    title: "잊혀진 왕국의 전설",
+    genre: "판타지",
+    tags: ["왕국", "전쟁", "영웅"],
+    totalTurns: 45,
+    totalAuthors: 10,
+    totalLikes: 2456,
+    completedDate: "2025-01-10",
+    preview: "천 년 전 사라진 왕국. 그 마지막 계승자가 깨어났다.",
+    coverImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-8",
+    title: "비 오는 날의 편지",
+    genre: "로맨스",
+    tags: ["편지", "이별", "재회"],
+    totalTurns: 22,
+    totalAuthors: 4,
+    totalLikes: 1456,
+    completedDate: "2025-01-05",
+    preview: "비가 올 때마다 도착하는 편지. 발신인은 5년 전 떠난 그 사람이었다.",
+    coverImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=600&fit=crop"
+  },
+  {
+    id: "completed-9",
+    title: "심연에서 온 목소리",
+    genre: "공포",
+    tags: ["심해", "공포", "생존"],
+    totalTurns: 33,
+    totalAuthors: 7,
+    totalLikes: 1334,
+    completedDate: "2024-12-28",
+    preview: "심해 탐사대가 발견한 것은 존재해서는 안 될 무언가였다.",
+    coverImage: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=600&fit=crop"
   },
 ]
