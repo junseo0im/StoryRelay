@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth-provider"
 import { PenLine, Sparkles } from "lucide-react"
@@ -44,19 +45,24 @@ export function HeroSection() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
             {isLoggedIn ? (
-              <Button size="lg" className="w-full sm:w-auto px-8 gap-2 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all">
-                <PenLine className="h-5 w-5" />
-                이야기 이어쓰기
-              </Button>
+              <>
+                <Link href="/story/create">
+                  <Button size="lg" className="w-full sm:w-auto px-8 gap-2 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all">
+                    <Sparkles className="h-5 w-5" />
+                    새 스토리 만들기
+                  </Button>
+                </Link>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 bg-background/50 backdrop-blur-sm hover:bg-background/80 transition-all" onClick={() => window.scrollTo({ top: document.getElementById('stories')?.offsetTop || 800, behavior: 'smooth' })}>
+                  <PenLine className="h-5 w-5" />
+                  이야기 이어쓰기
+                </Button>
+              </>
             ) : (
               <Button size="lg" className="w-full sm:w-auto px-8 gap-2 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all" onClick={handleCTAClick}>
                 <PenLine className="h-5 w-5" />
                 글쓰기 시작하기
               </Button>
             )}
-            <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 bg-background/50 backdrop-blur-sm hover:bg-background/80 transition-all">
-              둘러보기
-            </Button>
           </div>
         </div>
 
