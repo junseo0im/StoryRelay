@@ -19,8 +19,10 @@ export default function HomePage() {
       <HeroSection />
       <ChallengeBanner />
       <PopularAuthors />
-      <FilterBar onFilterChange={setFilters} />
-      <StoryList filters={filters} />
+      <div id="stories">
+        <FilterBar onFilterChange={setFilters} />
+        <StoryList filters={filters} />
+      </div>
     </div>
   )
 }
