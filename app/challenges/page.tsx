@@ -1,4 +1,5 @@
 import { ChallengeCard } from "@/components/challenge-card"
+import { AwardWinnersGallery } from "@/components/award-winners-gallery"
 import { Trophy, Sparkles } from "lucide-react"
 
 // Sample challenges data
@@ -68,11 +69,14 @@ export default function ChallengesPage() {
           </p>
         </div>
 
+        {/* Award Winners Gallery */}
+        <AwardWinnersGallery />
+
         {/* Active Challenges */}
         {activeChallenges.length > 0 && (
-          <section className="mb-12">
+          <section className="mb-12 mt-16">
             <div className="flex items-center gap-2 mb-6">
-              <Sparkles className="h-5 w-5 text-primary" />
+              <Sparkles className="h-5 w-5 text-primary animate-pulse" />
               <h2 className="text-xl font-semibold text-foreground">진행 중인 챌린지</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

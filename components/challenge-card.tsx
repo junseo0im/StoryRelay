@@ -62,14 +62,24 @@ export function ChallengeCard({
     ended: { label: "종료됨", className: "bg-muted text-muted-foreground" },
   }
 
+  // Calculate progress percentage
+  const maxParticipants = 300
+  const participationProgress = Math.min((participantCount / maxParticipants) * 100, 100)
+
   return (
-    <div className="bg-card rounded-2xl border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
-      {/* Status Banner */}
+    <div className="group relative bg-card rounded-2xl border border-border/50 shadow-sm hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-secondary/0 group-hover:from-primary/5 group-hover:to-secondary/5 transition-all duration-500 pointer-events-none" />
+      
+      {/* Animated Status Banner with Particles */}
       {status === "active" && (
-        <div className="bg-gradient-to-r from-primary to-secondary h-1" />
+        <>
+          <div className="relative bg-gradient-to-r from-primary via-secondary to-primary h-1 animate-gradient-x" />
+          <div className="absolute top-0 left-1/4 w-2 h-2 bg-white/50 rounded-full animate-ping" style={{ animationDuration: '2s' }} />
+        </>
       )}
 
-      <div className="p-6">
+      <div className="relative p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -87,25 +97,56 @@ export function ChallengeCard({
         <h3 className="text-xl font-semibold text-card-foreground mb-2">{title}</h3>
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{description}</p>
 
+        {/* Progress Bar */}
+        {status === "active" && (
+          <div className="mb-4">
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+              <span>참여도</span>
+              <span>{Math.round(participationProgress)}%</span>
+            </div>
+            <div className="h-2 bg-muted/30 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 ease-out rounded-full"
+                style={{ width: `${participationProgress}%` }}
+              >
+                <div className="h-full bg-white/20 animate-pulse" />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 group-hover:text-primary transition-colors">
             <Clock className="h-4 w-4" />
             <span>{timeLeft}</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 group-hover:text-primary transition-colors">
             <Users className="h-4 w-4" />
             <span>{participantCount}명 참여</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 group-hover:text-primary transition-colors">
             <BookOpen className="h-4 w-4" />
             <span>{storyCount}개 스토리</span>
           </div>
         </div>
 
+        {/* Participation Badge */}
+        {status === "ended" && storyCount > 0 && (
+          <div className="mb-4 p-3 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30">
+            <div className="flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-yellow-600" />
+              <span className="text-xs font-medium text-yellow-700">우수작 배지 수여</span>
+            </div>
+          </div>
+        )}
+
         {/* Action */}
         <Link href={`/challenges/${id}`}>
-          <Button className="w-full" disabled={status === "ended"}>
+          <Button 
+            className="w-full group-hover:scale-105 transition-transform" 
+            disabled={status === "ended"}
+          >
             {status === "active" ? "참여 스토리 보기" : status === "upcoming" ? "자세히 보기" : "결과 보기"}
           </Button>
         </Link>

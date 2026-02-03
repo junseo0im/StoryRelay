@@ -54,7 +54,12 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="relative bg-background/40 backdrop-blur-xl rounded-3xl border border-border/50 p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+        {/* Glassmorphism gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />
+        
+        <div className="relative">
         {/* Genre Tabs */}
         <div className="flex flex-wrap gap-2 mb-4">
           {genres.map((genre) => (
@@ -64,10 +69,10 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               size="sm"
               onClick={() => handleGenreChange(genre.value)}
               className={cn(
-                "rounded-full transition-all duration-200",
+                "rounded-full transition-all duration-300 hover:scale-105 active:scale-95",
                 selectedGenre === genre.value
-                  ? "shadow-md shadow-primary/25"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "shadow-lg shadow-primary/30 bg-gradient-to-r from-primary to-secondary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:shadow-md"
               )}
             >
               {genre.label}
@@ -101,6 +106,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </SelectContent>
             </Select>
           </div>
+        </div>
         </div>
       </div>
     </section>

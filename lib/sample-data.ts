@@ -1,4 +1,4 @@
-import type { Story, StoryDetail, ProfileStory, Challenge } from "./types"
+import type { Story, StoryDetail, ProfileStory, Challenge, PopularAuthor } from "./types"
 
 export const sampleStories: Story[] = [
   {
@@ -69,33 +69,48 @@ export const sampleStoryDetail: StoryDetail = {
   paragraphs: [
     {
       author: "별지기",
+      authorId: "1",
+      authorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=star",
       content: "그날 밤, 하늘에서 떨어진 것은 별이 아니었다. 소녀는 숲 속 깊은 곳에서 빛나는 무언가를 발견했다. 가까이 다가가자, 그것은 마치 살아있는 것처럼 맥박치며 빛을 내뿜고 있었다.",
       turnNumber: 1,
       createdAt: "2일 전",
+      likes: 42,
     },
     {
       author: "숲의여행자",
+      authorId: "2",
+      authorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=forest",
       content: "\"무엇이지?\" 소녀는 조심스럽게 손을 뻗었다. 손끝이 빛에 닿는 순간, 온 몸으로 따뜻한 기운이 퍼져나갔다. 그리고 그녀의 머릿속에 낯선 목소리가 울려 퍼졌다. \"드디어 찾았구나, 계승자여.\"",
       turnNumber: 2,
       createdAt: "2일 전",
+      likes: 38,
     },
     {
       author: "달빛작가",
+      authorId: "3",
+      authorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=moon",
       content: "소녀는 깜짝 놀라 뒤로 물러섰다. 하지만 빛은 그녀를 따라왔다. 마치 그녀에게 이끌리듯이. \"계승자라니, 무슨 말이에요?\" 소녀가 떨리는 목소리로 물었다.",
       turnNumber: 3,
       createdAt: "1일 전",
+      likes: 51,
     },
     {
       author: "별지기",
+      authorId: "1",
+      authorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=star",
       content: "빛이 점점 형체를 갖추기 시작했다. 작은 정령의 모습이었다. 투명한 날개를 가진 그 존재는 소녀의 눈높이에 맞춰 떠올랐다. \"천 년 전, 이 숲을 지키던 수호자가 있었어. 그리고 너는 그의 마지막 후손이야.\"",
       turnNumber: 4,
       createdAt: "12시간 전",
+      likes: 29,
     },
     {
       author: "새벽이슬",
+      authorId: "4",
+      authorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=dawn",
       content: "소녀의 심장이 빠르게 뛰기 시작했다. 할머니가 어릴 적 들려주셨던 옛 이야기가 떠올랐다. 그때는 그저 동화라고 생각했는데... \"그래서 저에게 원하는 게 뭔가요?\" 소녀는 용기를 내어 물었다.",
       turnNumber: 5,
       createdAt: "3시간 전",
+      likes: 67,
     },
   ],
 }
@@ -190,5 +205,62 @@ export const sampleChallenges: Challenge[] = [
     participants: 256,
     stories: 89,
     status: "ended",
+  },
+]
+
+export const popularAuthors: PopularAuthor[] = [
+  {
+    id: "1",
+    name: "별지기",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=star",
+    storiesCount: 12,
+    totalLikes: 1523,
+    totalTurns: 45,
+    badge: "전설 작가"
+  },
+  {
+    id: "2",
+    name: "숲의여행자",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=forest",
+    storiesCount: 8,
+    totalLikes: 892,
+    totalTurns: 34,
+    badge: "베테랑 작가"
+  },
+  {
+    id: "3",
+    name: "달빛작가",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=moon",
+    storiesCount: 15,
+    totalLikes: 2104,
+    totalTurns: 67,
+    badge: "전설 작가"
+  },
+  {
+    id: "4",
+    name: "새벽이슬",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=dawn",
+    storiesCount: 6,
+    totalLikes: 645,
+    totalTurns: 23,
+    badge: "인기 작가"
+  },
+  {
+    id: "5",
+    name: "시간여행자",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=time",
+    storiesCount: 10,
+    totalLikes: 1234,
+    totalTurns: 52,
+    badge: "베테랑 작가"
+  },
+  {
+    id: "6",
+    name: "은하수탐험",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=galaxy",
+    storiesCount: 7,
+    totalLikes: 789,
+    totalTurns: 29,
+    badge: "인기 작가"
   },
 ]

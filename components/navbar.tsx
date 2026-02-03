@@ -31,15 +31,20 @@ export function Navbar() {
   return (
     <>
       <LoginModal />
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/50 shadow-sm">
+        {/* Glassmorphism overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                <BookOpen className="h-5 w-5 text-primary" />
+              <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                <BookOpen className="h-5 w-5 text-primary group-hover:rotate-12 transition-transform" />
               </div>
-              <span className="text-xl font-bold text-foreground">StoryRelay</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-primary group-hover:to-secondary transition-all duration-300">
+                StoryRelay
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -51,13 +56,16 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all",
+                      "relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105",
                       isActive
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "bg-gradient-to-r from-primary/10 to-secondary/10 text-primary shadow-md shadow-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:shadow-sm"
                     )}
                   >
-                    <item.icon className="h-4 w-4" />
+                    <item.icon className={cn(
+                      "h-4 w-4 transition-transform duration-300",
+                      isActive && "scale-110"
+                    )} />
                     {item.label}
                     {item.badge && (
                       <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-secondary text-secondary-foreground">
@@ -145,8 +153,9 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/50 bg-card/95 backdrop-blur-md">
-            <div className="px-4 py-3 space-y-1">
+          <div className="md:hidden border-t border-border/50 bg-background/80 backdrop-blur-xl animate-in slide-in-from-top duration-300">
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+            <div className="relative px-4 py-3 space-y-1">
               {navItems.map((item) => {
                 const isActive = pathname === item.href
                 return (

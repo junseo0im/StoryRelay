@@ -7,6 +7,16 @@ export interface User {
   avatar?: string
 }
 
+export interface PopularAuthor {
+  id: string
+  name: string
+  avatar?: string
+  storiesCount: number
+  totalLikes: number
+  totalTurns: number
+  badge?: string
+}
+
 export interface Story {
   id: string
   title: string
@@ -20,9 +30,12 @@ export interface Story {
 
 export interface Paragraph {
   author: string
+  authorId?: string
+  authorAvatar?: string
   content: string
   turnNumber: number
   createdAt: string
+  likes?: number
 }
 
 export interface StoryDetail extends Story {
